@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Global Superstore 2016 Dashboard</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f8f8; }
+.container { max-width: 1200px; margin: 30px auto; background: #fff; padding: 24px 32px 32px 32px; border-radius: 10px; box-shadow: 0 2px 8px #0001; }
+h1 { font-size: 2.2em; margin-bottom: 0.2em; }
+h2 { font-size: 1.2em; color: #555; margin-top: 0; }
+.kpis { display: flex; gap: 24px; margin: 24px 0 32px 0; }
+.kpi { background: #f0f4f8; border-radius: 8px; padding: 18px 28px; font-size: 1.25em; flex: 1; text-align: center; box-shadow: 0 1px 4px #0001; }
+.charts { display: flex; gap: 32px; }
+.chart-block { flex: 1; background: #fafbfc; border-radius: 8px; padding: 18px 18px 10px 18px; box-shadow: 0 1px 4px #0001; }
+.chart-title { font-weight: bold; margin-bottom: 8px; }
+.filter-row { margin-bottom: 10px; }
+.insights { margin: 32px 0 18px 0; }
+.insights li { margin-bottom: 6px; }
+.preview-table { border-collapse: collapse; width: 100%; margin-top: 12px; background: #fff; }
+.preview-table th, .preview-table td { border: 1px solid #ddd; padding: 6px 10px; font-size: 0.98em; }
+.preview-table th { background: #f0f0f0; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Global Superstore 2016 Dashboard</h1>
+<h2>Interactive dashboard for sales, profit, and returns</h2>
+<div class="kpis"><div class="kpi"><div>Total Sales</div><b>$12,649,677</b></div><div class="kpi"><div>Total Profit</div><b>$1,473,755</b></div><div class="kpi"><div>Orders</div><b>25,728</b></div><div class="kpi"><div>Returned Orders</div><b>2,220</b></div><div class="kpi"><div>Avg Discount</div><b>14.3%</b></div></div>
+<div class="charts">
+  <div class="chart-block">
+    <div class="chart-title">Top 15 Sub-Categories by Sales</div>
+    <div class="filter-row">
+      <label for="bar-filter">Region:</label>
+      <select id="bar-filter"></select>
+    </div>
+    <div id="bar-chart"></div>
+  </div>
+  <div class="chart-block">
+    <div class="chart-title">Profit by Segment</div>
+    <div class="filter-row">
+      <label for="pie-filter">Market:</label>
+      <select id="pie-filter"></select>
+    </div>
+    <div id="pie-chart"></div>
+  </div>
+</div>
+<div class="insights">
+  <h3>Key Insights</h3>
+  <ul><li>Total sales: $12,649,677</li>
+<li>Total profit: $1,473,755</li>
+<li>Total unique orders: 25728</li>
+<li>Returned orders: 2220 (8.6%)</li>
+<li>Average discount: 14.29%</li></ul>
+</div>
+<h3>Preview of First 10 Orders</h3>
+<table class="preview-table">
+<thead><tr><th>Order ID</th><th>Order Date</th><th>Customer Name</th><th>Segment</th><th>Country</th><th>Region</th><th>Market</th><th>Category</th><th>Sub-Category</th><th>Sales</th><th>Profit</th><th>Returned</th></tr></thead>
+<tbody><tr><td>CA-2014-AB10015140-41954</td><td>2014-11-11 00:00:00</td><td>Aaron Bergman</td><td>Consumer</td><td>United States</td><td>Central US</td><td>USCA</td><td>Technology</td><td>Phones</td><td>321.98</td><td>162.1544</td><td>No</td></tr><tr><td>IN-2014-JR162107-41675</td><td>2014-02-05 00:00:00</td><td>Justin Ritter</td><td>Corporate</td><td>Australia</td><td>Oceania</td><td>Asia Pacific</td><td>Furniture</td><td>Chairs</td><td>3709.3949999999995</td><td>-288.765</td><td>No</td></tr><tr><td>IN-2014-CR127307-41929</td><td>2014-10-17 00:00:00</td><td>Craig Reiter</td><td>Consumer</td><td>Australia</td><td>Oceania</td><td>Asia Pacific</td><td>Technology</td><td>Phones</td><td>7175.171</td><td>3919.971</td><td>No</td></tr><tr><td>ES-2014-KM1637548-41667</td><td>2014-01-28 00:00:00</td><td>Katherine Murray</td><td>Home Office</td><td>Germany</td><td>Western Europe</td><td>Europe</td><td>Technology</td><td>Phones</td><td>2892.5099999999998</td><td>2096.54</td><td>No</td></tr><tr><td>SG-2014-RH9495111-41948</td><td>2014-11-05 00:00:00</td><td>Rick Hansen</td><td>Consumer</td><td>Senegal</td><td>Western Africa</td><td>Africa</td><td>Technology</td><td>Copiers</td><td>3832.96</td><td>311.52</td><td>No</td></tr><tr><td>IN-2014-JM156557-41818</td><td>2014-06-28 00:00:00</td><td>Jim Mitchum</td><td>Corporate</td><td>Australia</td><td>Oceania</td><td>Asia Pacific</td><td>Technology</td><td>Phones</td><td>2862.675</td><td>763.2750000000001</td><td>No</td></tr><tr><td>IN-2012-TS2134092-41219</td><td>2012-11-06 00:00:00</td><td>Toby Swindell</td><td>Consumer</td><td>New Zealand</td><td>Oceania</td><td>Asia Pacific</td><td>Furniture</td><td>Chairs</td><td>1822.0799999999997</td><td>564.84</td><td>No</td></tr><tr><td>IN-2013-MB1808592-41378</td><td>2013-04-14 00:00:00</td><td>Mick Brown</td><td>Consumer</td><td>New Zealand</td><td>Oceania</td><td>Asia Pacific</td><td>Furniture</td><td>Tables</td><td>5244.84</td><td>996.4799999999999</td><td>No</td></tr><tr><td>CA-2014-AB10015140-41954</td><td>2014-11-11 00:00:00</td><td>Aaron Bergman</td><td>Consumer</td><td>United States</td><td>Central US</td><td>USCA</td><td>Furniture</td><td>Bookcases</td><td>341.96</td><td>54.713599999999985</td><td>No</td></tr><tr><td>CA-2012-AB10015140-40974</td><td>2012-03-06 00:00:00</td><td>Aaron Bergman</td><td>Consumer</td><td>United States</td><td>Western US</td><td>USCA</td><td>Furniture</td><td>Chairs</td><td>48.712</td><td>5.480099999999997</td><td>No</td></tr></tbody>
+</table>
+</div>
+<script>
+const chartData = {"bar": {"category": "Sub-Category", "value": "Sales", "filter": "Region", "data": {"All": {"labels": ["Phones", "Copiers", "Chairs", "Bookcases", "Storage", "Appliances", "Machines", "Tables", "Accessories", "Binders", "Furnishings", "Art", "Supplies", "Paper", "Envelopes"], "values": [1708924.1392, 1511436.27328, 1501681.7641999999, 1466572.2418, 1127812.9694, 1010535.525, 779060.0671000001, 757041.9244, 749237.0185, 461882.8337, 385155.9679, 373613.1539, 242811.1326, 241848.9074, 169217.4896]}, "Canada": {"labels": ["Storage", "Phones", "Appliances", "Copiers", "Art", "Bookcases", "Accessories", "Machines", "Chairs", "Binders", "Paper", "Supplies", "Tables", "Furnishings", "Envelopes"], "values": [11587.3, 10085.61, 7940.43, 7465.53, 6119.54, 5734.02, 4473.21, 4274.460000000001, 3203.3700000000003, 3089.34, 1519.53, 1309.5600000000002, 849.3599999999999, 808.53, 567.1800000000001]}, "Caribbean": {"labels": ["Copiers", "Chairs", "Phones", "Bookcases", "Appliances", "Tables", "Accessories", "Storage", "Furnishings", "Binders", "Supplies", "Paper", "Envelopes", "Art", "Machines"], "values": [51000.33304, 45187.124, 40876.696, 39358.356, 30064.584, 23661.308, 20291.518, 18670.068, 10165.612, 8463.584, 7224.976000000001, 7185.604, 6341.28, 6083.808, 5164.4980000000005]}, "Central Africa": {"labels": ["Phones", "Storage", "Bookcases", "Machines", "Copiers", "Chairs", "Appliances", "Accessories", "Tables", "Art", "Furnishings", "Binders", "Paper", "Supplies", "Envelopes"], "values": [25472.13, 17962.86, 15561.42, 15184.830000000002, 13346.43, 8819.25, 8669.16, 7686.6, 7482.96, 7136.49, 4731.21, 3384.51, 2523.96, 1958.4, 1576.41]}, "Central America": {"labels": ["Phones", "Copiers", "Bookcases", "Chairs", "Appliances", "Storage", "Accessories", "Tables", "Furnishings", "Binders", "Art", "Envelopes", "Machines", "Supplies", "Paper"], "values": [178567.516, 176245.91816, 172228.252, 161573.832, 100282.016, 86216.232, 84218.656, 75383.58200000001, 32801.704, 24656.920000000002, 23731.292, 22969.34, 22638.192000000003, 22599.347999999998, 20492.52]}, "Central Asia": {"labels": ["Phones", "Appliances", "Accessories", "Storage", "Machines", "Chairs", "Bookcases", "Art", "Copiers", "Supplies", "Binders", "Envelopes", "Paper", "Fasteners", "Labels"], "values": [3466.749, 2480.5350000000003, 2244.003, 2117.073, 1739.2230000000002, 1607.733, 1384.896, 1188.087, 740.7630000000001, 547.38, 480.0210000000001, 356.862, 296.61, 267.678, 218.90099999999998]}, "Central US": {"labels": ["Chairs", "Phones", "Binders", "Storage", "Tables", "Copiers", "Accessories", "Machines", "Bookcases", "Appliances", "Paper", "Furnishings", "Supplies", "Art", "Envelopes"], "values": [85230.646, 72503.282, 56923.282, 45813.8, 39154.971, 37259.57, 33956.076, 26797.384, 24157.176799999997, 23518.949, 16694.53, 15149.782, 9394.996, 5652.06, 4204.88]}, "Eastern Africa": {"labels": ["Storage", "Bookcases", "Phones", "Appliances", "Copiers", "Machines", "Chairs", "Art", "Accessories", "Tables", "Binders", "Furnishings", "Supplies", "Envelopes", "Paper"], "values": [21999.759, 16946.529, 16349.619, 11244.896999999999, 11106.633, 10804.482000000002, 7948.035, 6534.687, 5921.865000000001, 4250.102999999999, 3679.758, 3251.28, 2493.618, 1680.816, 1523.145]}, "Eastern Asia": {"labels": ["Bookcases", "Chairs", "Copiers", "Phones", "Appliances", "Storage", "Tables", "Machines", "Accessories", "Furnishings", "Supplies", "Art", "Binders", "Paper", "Envelopes"], "values": [130066.917, 129960.249, 123331.2, 103471.74, 58059.75, 55625.219999999994, 54300.432, 48832.68000000001, 39755.145000000004, 22056.993000000002, 17582.7, 16578.765, 14776.83, 14243.535, 13933.11]}, "Eastern Europe": {"labels": ["Storage", "Bookcases", "Phones", "Copiers", "Chairs", "Machines", "Appliances", "Tables", "Accessories", "Art", "Furnishings", "Binders", "Supplies", "Paper", "Envelopes"], "values": [41420.88, 40160.16, 35906.67, 33475.71, 27340.5, 22411.89, 21028.71, 18123.87, 16464.66, 14639.94, 12497.37, 8525.460000000001, 5308.74, 4443.33, 4072.5299999999997]}, "Eastern US": {"labels": ["Phones", "Chairs", "Storage", "Machines", "Binders", "Copiers", "Accessories", "Bookcases", "Tables", "Appliances", "Furnishings", "Paper", "Supplies", "Art", "Envelopes"], "values": [100614.982, 96260.683, 71510.556, 66106.16500000001, 53487.469000000005, 53219.462, 45033.372, 43819.334, 39139.807, 34116.646, 28982.228000000003, 19467.422, 10666.348, 7319.404, 3631.542]}, "North Africa": {"labels": ["Copiers", "Storage", "Bookcases", "Phones", "Appliances", "Machines", "Chairs", "Tables", "Accessories", "Art", "Binders", "Furnishings", "Paper", "Supplies", "Envelopes"], "values": [28934.010000000002, 26375.43, 26039.1, 25917.33, 23253.12, 18691.68, 14765.76, 13359.539999999999, 13155.87, 11636.85, 7986.63, 6812.91, 5406.6, 4280.01, 3369.4500000000003]}, "Northern Europe": {"labels": ["Phones", "Bookcases", "Copiers", "Storage", "Appliances", "Machines", "Chairs", "Tables", "Art", "Accessories", "Binders", "Supplies", "Envelopes", "Furnishings", "Paper"], "values": [89715.52500000001, 85143.294, 77585.316, 71338.146, 58488.765, 56500.05, 39655.863, 33028.106999999996, 30855.786, 29168.199, 19159.077, 11244.861, 10474.473, 9855.261, 7013.136]}, "Oceania": {"labels": ["Chairs", "Copiers", "Bookcases", "Phones", "Appliances", "Tables", "Accessories", "Storage", "Machines", "Furnishings", "Supplies", "Binders", "Paper", "Art", "Envelopes"], "values": [170284.20599999998, 163207.545, 144835.617, 128333.55500000001, 101549.721, 66830.991, 66543.42, 65160.837, 51918.46200000001, 28517.190000000002, 24087.804, 19823.184, 19608.483, 19424.973, 15658.452]}, "South America": {"labels": ["Chairs", "Bookcases", "Copiers", "Phones", "Appliances", "Tables", "Accessories", "Storage", "Furnishings", "Supplies", "Machines", "Envelopes", "Art", "Paper", "Binders"], "values": [95458.256, 90828.516, 90076.07188, 70267.276, 51728.648, 45835.438, 37228.384, 37149.88, 19488.64, 13414.244, 13138.756000000001, 12046.232, 11369.496, 10573.652, 10032.476]}, "Southeastern Asia": {"labels": ["Phones", "Chairs", "Copiers", "Bookcases", "Appliances", "Storage", "Tables", "Machines", "Accessories", "Furnishings", "Binders", "Art", "Supplies", "Envelopes", "Paper"], "values": [124433.9112, 122680.7652, 116944.07519999999, 109759.88249999999, 94542.363, 63547.829399999995, 52455.414899999996, 51593.1531, 36780.2445, 28490.6409, 16741.9707, 16316.6919, 15725.367600000001, 11690.8116, 11382.7764]}, "Southern Africa": {"labels": ["Phones", "Copiers", "Storage", "Chairs", "Machines", "Bookcases", "Accessories", "Appliances", "Art", "Tables", "Binders", "Furnishings", "Paper", "Envelopes", "Supplies"], "values": [17504.94, 16567.41, 10311.24, 10214.49, 9915.12, 8250.51, 7332.03, 5734.259999999999, 4788.78, 3763.5299999999997, 2977.05, 2847.87, 1468.1100000000001, 1107.06, 973.11]}, "Southern Asia": {"labels": ["Phones", "Bookcases", "Copiers", "Chairs", "Appliances", "Tables", "Accessories", "Storage", "Machines", "Furnishings", "Supplies", "Binders", "Paper", "Art", "Envelopes"], "values": [151545.18, 133645.662, 102875.325, 97887.738, 62914.155, 55867.884, 49665.105, 47955.165, 47720.98500000001, 26961.978, 16964.73, 16926.015, 16206.165, 15272.85, 12462.555]}, "Southern Europe": {"labels": ["Bookcases", "Appliances", "Copiers", "Storage", "Phones", "Accessories", "Art", "Machines", "Chairs", "Furnishings", "Binders", "Tables", "Paper", "Supplies", "Envelopes"], "values": [87850.785, 80509.725, 80044.62, 69007.92599999999, 63589.962, 37976.46, 34193.534999999996, 34092.888, 23786.124, 23675.505, 20416.77, 15140.838, 11629.26, 11073.63, 8521.89]}, "Southern US": {"labels": ["Phones", "Machines", "Chairs", "Tables", "Binders", "Storage", "Accessories", "Appliances", "Furnishings", "Paper", "Bookcases", "Copiers", "Supplies", "Art", "Envelopes"], "values": [58304.438, 53890.96, 45176.446, 43916.192, 37015.301, 35745.548, 27276.754, 19410.57, 17256.412, 13691.844000000001, 10899.362, 9299.756, 8294.384, 4578.61, 3139.088]}, "Western Africa": {"labels": ["Phones", "Copiers", "Storage", "Bookcases", "Machines", "Chairs", "Appliances", "Art", "Accessories", "Tables", "Binders", "Supplies", "Furnishings", "Paper", "Envelopes"], "values": [29588.835000000003, 27303.199, 20024.826, 16659.849000000002, 14508.303000000002, 14290.839, 13284.939, 8338.986, 8075.727000000001, 5676.462, 4284.996, 3558.288, 2978.9880000000003, 2577.672, 1954.2450000000001]}, "Western Asia": {"labels": ["Phones", "Storage", "Copiers", "Chairs", "Bookcases", "Appliances", "Machines", "Accessories", "Art", "Tables", "Binders", "Furnishings", "Supplies", "Envelopes", "Paper"], "values": [49522.275, 34693.317, 33074.496, 31181.184, 30719.184, 30332.076, 23705.628, 18009.84, 16198.479, 13760.031, 10860.798, 8120.7660000000005, 5382.552000000001, 4063.839, 3675.477]}, "Western Europe": {"labels": ["Phones", "Copiers", "Storage", "Bookcases", "Chairs", "Appliances", "Machines", "Accessories", "Art", "Binders", "Tables", "Furnishings", "Supplies", "Paper", "Envelopes"], "values": [214201.566, 208583.658, 203078.265, 196519.296, 167387.343, 141424.29, 136986.15600000002, 96865.764, 96564.13799999999, 62246.823000000004, 60306.5415, 49635.699, 30671.364, 24104.328, 21581.364]}, "Western US": {"labels": ["Chairs", "Phones", "Tables", "Storage", "Accessories", "Binders", "Copiers", "Machines", "Bookcases", "Appliances", "Furnishings", "Paper", "Supplies", "Art", "Labels"], "values": [101781.32800000001, 98684.352, 84754.562, 70500.812, 61114.116, 55944.569, 49749.242, 42444.122, 36004.1235, 29957.216, 29894.454, 26121.218, 18054.721999999998, 9089.906, 5061.386]}}}, "pie": {"category": "Segment", "value": "Profit", "filter": "Market", "data": {"All": {"labels": ["Consumer", "Corporate", "Home Office"], "values": [753341.5820599999, 441208.32866, 279204.66056]}, "Africa": {"labels": ["Consumer", "Corporate", "Home Office"], "values": [47772.099, 20686.965000000004, 20412.567000000003]}, "Asia Pacific": {"labels": ["Consumer", "Corporate", "Home Office"], "values": [214237.9204, 118340.9218, 73597.1958]}, "Europe": {"labels": ["Consumer", "Corporate", "Home Office"], "values": [225799.9215, 147289.4265, 78655.4555]}, "LATAM": {"labels": ["Consumer", "Corporate", "Home Office"], "values": [121634.73195999999, 57875.42136, 43137.53376]}, "USCA": {"labels": ["Consumer", "Corporate", "Home Office"], "values": [143896.90919999997, 97015.59399999998, 63401.90849999998]}}}};
+function escapeHtml(text) {
+  var map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+function fillDropdown(id, options) {
+  const sel = document.getElementById(id);
+  sel.innerHTML = '';
+  options.forEach(opt => {
+    const o = document.createElement('option');
+    o.value = opt; o.textContent = opt;
+    sel.appendChild(o);
+  });
+}
+function drawBar(region) {
+  const d = chartData.bar.data[region];
+  Plotly.react('bar-chart', [{
+    x: d.labels,
+    y: d.values,
+    type: 'bar',
+    marker: {color: '#2a7cff'}
+  }], {margin: {t: 30, l: 60, r: 10, b: 80}, xaxis: {tickangle: -30}, yaxis: {title: 'Sales'}, title: ''}, {displayModeBar: false});
+}
+function drawPie(market) {
+  const d = chartData.pie.data[market];
+  Plotly.react('pie-chart', [{
+    labels: d.labels,
+    values: d.values,
+    type: 'pie',
+    textinfo: 'label+percent',
+    marker: {colors: ['#2a7cff','#00b894','#fdcb6e','#e17055','#636e72','#6c5ce7','#00cec9','#b2bec3']}
+  }], {margin: {t: 30, l: 10, r: 10, b: 10}, title: ''}, {displayModeBar: false});
+}
+document.addEventListener('DOMContentLoaded', function() {
+  fillDropdown('bar-filter', Object.keys(chartData.bar.data));
+  fillDropdown('pie-filter', Object.keys(chartData.pie.data));
+  document.getElementById('bar-filter').addEventListener('change', e => drawBar(e.target.value));
+  document.getElementById('pie-filter').addEventListener('change', e => drawPie(e.target.value));
+  drawBar('All');
+  drawPie('All');
+});
+</script>
+</body>
+</html>
